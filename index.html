@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Captioning</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: #333;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #3498db;
+        }
+        h2 {
+            font-size: 2em;
+            margin: 10px 0;
+            color: #2c3e50;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #3498db;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        #caption {
+            font-weight: bold;
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+        #loadingMessage {
+            display: none;
+            font-size: 1.5em;
+            color: #f39c12;
+        }
+        .section {
+            display: none; /* Hide sections by default */
+        }
+        .visible {
+            display: block; /* Show section when visible class is added */
+        }
+    </style>
+</head>
+<body>
+    <h1>Image Captioning System</h1>
+
+    <!-- Selection Buttons -->
+    <div id="selection">
+        <button id="selectUpload">Upload from Device</button>
+        <button id="selectCamera">Use Camera</button>
+    </div>
+
+    <!-- Upload Section -->
+    <div id="uploadSection" class="section">
+        <h2>Upload an Image</h2>
+        <form id="uploadForm" enctype="multipart/form-data">
+            <input type="file" id="fileInput" name="file" accept="image/*" required>
+            <button type="button" id="uploadImageButton">Upload</button>
+        </form>
+    </div>
+
+    <!-- Camera Capture Section -->
+    <div id="cameraSection" class="section">
+        <h2>Use Your Camera</h2>
+        <video id="video" autoplay></video>
+        <button id="capture">Capture Photo</button>
+
+        <!-- Canvas to Display Captured Image -->
+        <canvas id="canvas" style="display: none;"></canvas>
+        <img id="captured-image" style="display: none;">
+
+        <!-- Buttons for Uploading and Retaking the Captured Image -->
+        <button id="upload" style="display: none;">Upload Captured Photo</button>
+        <button id="retake" style="display: none;">Retake Photo</button>
+    </div>
+
+    <!-- Caption Display -->
+    <h3>Generated Caption:</h3>
+    <p id="loadingMessage">Uploading...</p>
+    <p id="caption"></p>
+
+    <!-- JavaScript File for Handling Camera and Upload -->
+    <script src="/static/camera.js"></script>
+</body>
+</html>
