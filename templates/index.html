@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Captioning</title>
+    <style>
+        /* Basic reset and layout */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #eaf4fc; /* Very light blue background */
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        /* Header and Title */
+        h1 {
+            font-size: 3em;
+            color: #3498db;
+            margin-bottom: 20px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        h2 {
+            font-size: 2em;
+            color: #2c3e50;
+            margin: 10px 0;
+            animation: slideIn 1s ease-in-out;
+        }
+
+        /* Project footer bar */
+        #taskbar {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            background-color: #2980b9;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-size: 1.1em;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        #taskbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        #taskbar a:hover {
+            color: #f39c12;
+        }
+
+        /* Buttons and Interactive Sections */
+        button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            background-color: #3498db;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            margin: 10px;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        button:active {
+            background-color: #1a6d92;
+        }
+
+        /* Sections with animation effects */
+        .section {
+            display: none;
+            animation: fadeInSection 1s ease-in-out;
+        }
+
+        .visible {
+            display: block;
+        }
+
+        /* Loading and caption */
+        #loadingMessage {
+            font-size: 1.5em;
+            color: #f39c12;
+            display: none;
+            font-weight: bold;
+        }
+
+        #caption {
+            font-weight: bold;
+            font-size: 2em;
+            margin-top: 20px;
+            color: #2c3e50;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            0% {
+                opacity: 0;
+                transform: translateX(-100%);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInSection {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Icons */
+        .icon {
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+
+        /* Form Inputs */
+        input[type="file"] {
+            font-size: 1em;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Project Taskbar -->
+    <div id="taskbar">
+        <span>Project by Akshat Patil</span>
+        <a href="https://www.linkedin.com/in/akshat-patil-468564283/" target="_blank" class="icon">&#x1F465; LinkedIn</a>
+        <a href="https://github.com/akshat-patil" target="_blank" class="icon">&#x1F4BB; GitHub</a>
+    </div>
+
+    <h1>Image Captioning System</h1>
+
+    <!-- Caption Display -->
+    <div id="caption"></div>
+    <p id="loadingMessage">Uploading...</p>
+
+    <!-- Selection Buttons -->
+    <div id="selection">
+        <button id="selectUpload">Upload from Device</button>
+        <button id="selectCamera">Use Camera</button>
+    </div>
+
+    <!-- Upload Section -->
+    <div id="uploadSection" class="section">
+        <h2>Upload an Image</h2>
+        <form id="uploadForm" enctype="multipart/form-data">
+            <input type="file" id="fileInput" name="file" accept="image/*" required>
+            <button type="button" id="uploadImageButton">Upload</button>
+        </form>
+    </div>
+
+    <!-- Camera Capture Section -->
+    <div id="cameraSection" class="section">
+        <h2>Use Your Camera</h2>
+        <video id="video" autoplay></video>
+        <button id="capture">Capture Photo</button>
+
+        <!-- Canvas to Display Captured Image -->
+        <canvas id="canvas" style="display: none;"></canvas>
+        <img id="captured-image" style="display: none; width: 100%; max-width: 400px; margin-top: 20px;">
+
+        <!-- Buttons for Uploading and Retaking the Captured Image -->
+        <button id="upload" style="display: none;">Upload Captured Photo</button>
+        <button id="retake" style="display: none;">Retake Photo</button>
+    </div>
+
+    <!-- JavaScript File for Handling Camera and Upload -->
+    <script src="/static/camera.js"></script>
+</body>
+</html>
