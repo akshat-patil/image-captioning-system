@@ -4,7 +4,6 @@ Welcome to the repository for the Image Captioning System, a powerful web applic
 
 # 📂 Projects Overview
 
-1. **Loan Approval System**
 - **Objective:** The goal of this project is to build an image captioning system that can automatically generate descriptive captions for any given image. By leveraging advanced deep learning models, this system helps automate image understanding and provides meaningful textual descriptions.
 - **Tools & Technology:**
     - Framework: Flask 
